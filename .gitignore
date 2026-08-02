@@ -6,6 +6,13 @@ logs/
 __pycache__/
 *.pyc
 
+# 英文版中间产物（由 build_en.py 重新生成）
+part1-en.py
+part2-en.py
+part3-en.py
+part4-en.py
+part5-en.py
+
 # 编辑器/系统
 .vscode/
 .idea/
