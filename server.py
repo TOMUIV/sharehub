@@ -1676,7 +1676,7 @@ ADMIN_HTML = """<section class="hero">
 </div>
 <nav class="crumbs" id="crumbs"></nav>
 <div class="search"><span class="m">🔍</span><input id="q" type="text" placeholder="搜索当前目录…" autocomplete="off"></div>
-<div class="gtool" style="justify-content:flex-end">
+<div class="gtool">
   <button class="btn btn-multi btn-sm" id="btnSel">☑ 多选</button>
   <button class="btn btn-add btn-sm" id="btnNewFolder">📁 新建文件夹</button>
 </div>
