@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="assets/cover.png" alt="ShareHub" width="100%">
+
 # ShareHub · 共享资源站
 
 **一个文件，跑起你的自托管资源分享站——管理员上传，访客免登录直接下载。**

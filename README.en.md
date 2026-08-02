@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="assets/cover.png" alt="ShareHub" width="100%">
+
 # ShareHub · Self-hosted Resource Sharing Station
 
 **One file to run your self-hosted resource sharing station — admins upload, visitors download without login.**
