@@ -7,12 +7,15 @@ LABEL org.opencontainers.image.licenses="MIT"
 
 WORKDIR /app
 
-COPY server.py config.json /app/
+COPY server.py server-en.py config.json /app/
 
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONDONTWRITEBYTECODE=1
 
+# 界面语言：zh（默认，中文）/ en（英文）。通过 -e SHARE_LANG=en 切换。
+ENV SHARE_LANG=zh
+
 VOLUME ["/app/files", "/app/logs"]
 EXPOSE 18888
 
-CMD ["python", "server.py", "--host", "0.0.0.0", "--port", "18888", "--prefix", ""]
+CMD ["sh", "-c", "if [ \"$SHARE_LANG\" = \"en\" ]; then exec python server-en.py --host 0.0.0.0 --port 18888 --prefix \"\"; else exec python server.py --host 0.0.0.0 --port 18888 --prefix \"\"; fi"]

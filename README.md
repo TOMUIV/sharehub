@@ -20,21 +20,6 @@ ShareHub 是一个轻量级自托管资源分享站：管理员在网页里把�
 
 <img src="assets/mechanism.png" alt="机制示意" width="100%">
 
-## 🌐 中英文版本
-
-发布包同时提供两版界面：
-
-- `server.py` — 中文
-- `server-en.py` — 英文
-
-部署时选其一运行即可，例如英文版：
-
-```bash
-python3 server-en.py --host 0.0.0.0 --port 18888 --prefix ""
-```
-
-Docker 镜像默认中文版。英文版由 `build_en.py` 从中文源码自动生成，直接用 `server-en.py` 无需重新生成。
-
 ## 核心特性
 
 ### 🎯 目录上下文上传
