@@ -6,8 +6,6 @@
 
 **Upload, share, done.**
 
-Chunked concurrent upload · resumable transfer · folders never misplaced · visitors download without login.
-
 [中文](./README.md) · [Deploy](#quick-start) · [Core Features](#core-features) · [Cache & Reservation](#cache--reservation-mechanism)
 
 </div>
@@ -20,7 +18,7 @@ ShareHub is a lightweight self-hosted resource sharing station: an admin organiz
 
 No multi-user, no sync clients, no personal storage — just one thing: **the admin puts content up, visitors grab it via a link.** Great for course materials, research assets, team resource libraries, and asset distribution.
 
-<img src="assets/mechanism.png" alt="How it works" width="100%">
+<img src="assets/mechanism-en.png" alt="How it works" width="100%">
 
 ## Core Features
 
