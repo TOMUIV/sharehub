@@ -1,0 +1,16 @@
+services:
+  sharehub:
+    image: sharehub/sharehub:latest
+    container_name: sharehub
+    restart: unless-stopped
+    ports:
+      - "18888:18888"
+    volumes:
+      # 配置（含密码哈希与容量配额）— 用发布包里的 config.json 模板即可
+      - ./config.json:/app/config.json
+      # 文件池 / 日志（持久化）
+      - ./data/files:/app/files
+      - ./data/logs:/app/logs
+    # 默认 --prefix "" 即 http://host:18888/ 直接访问。
+    # 若经 nginx 部署在子路径（如 /share），改为：
+    # command: ["python", "server.py", "--host", "0.0.0.0", "--port", "18888", "--prefix", "/share"]

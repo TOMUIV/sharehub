@@ -1,0 +1,13 @@
+# 运行时生成的数据（不提交）
+files/
+logs/
+
+# Python
+__pycache__/
+*.pyc
+
+# 编辑器/系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

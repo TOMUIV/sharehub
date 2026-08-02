@@ -1,0 +1,20 @@
+[Unit]
+Description=ShareHub resource sharing station
+After=network.target
+
+[Service]
+Type=simple
+User=share
+Group=share
+WorkingDirectory=/opt/share
+# 部署在 /share 子路径；改前缀或端口请调整参数
+ExecStart=/usr/bin/python3 /opt/share/server.py --host 127.0.0.1 --port 18888 --prefix /share
+Restart=always
+RestartSec=3
+
+# 安全加固
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
