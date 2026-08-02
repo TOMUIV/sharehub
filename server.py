@@ -751,7 +751,9 @@ function render(){
     s.textContent=it.is_dir?(it.file_count+' 个文件 · '+fmt(it.size)):(fmt(it.size)+' · '+it.mtime);
     m.appendChild(n);m.appendChild(s);top.appendChild(t);top.appendChild(m);
     var bot=document.createElement('div');bot.className='f-bot';
-    var lb=document.createElement('span');lb.style.cssText='font-size:12px;color:var(--muted)';lb.textContent=it.is_dir?'文件夹':(it.icon+' 资源');
+    var lb=document.createElement('span');lb.style.cssText='font-size:12px;color:var(--muted)';
+    var ext=it.name.indexOf('.')>=0?it.name.split('.').pop().toUpperCase():'';
+    lb.textContent=it.is_dir?'文件夹':(ext||'文件');
     bot.appendChild(lb);
     if(it.is_dir){
       var grp=document.createElement('div');grp.style.cssText='display:flex;gap:8px;align-items:center';

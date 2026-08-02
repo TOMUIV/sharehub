@@ -26,6 +26,7 @@ EN = {
     "管理员上传文件后，就会展示在这里": "Files appear here after an admin uploads them",
     " 个文件 · ": " files · ",
     "文件夹": "folder",
+    "文件": "file",
     " 资源": " files",
     "打开": "Open",
     "↓ 下载": "↓ Download",
