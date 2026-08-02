@@ -553,6 +553,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;op
 .back-card .tile{border-style:dashed}
 .back-card:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
 .f-top{display:flex;align-items:center;gap:13px}
+.f-top .meta{flex:1;min-width:0;overflow:hidden}
 .tile{width:50px;height:50px;border:1.5px solid var(--ink);display:grid;place-items:center;font-size:24px;flex-shrink:0}
 .name{font-weight:700;font-size:14.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .sub{font-size:11px;color:var(--muted);margin-top:3px;font-family:"Courier New",monospace}
@@ -1328,7 +1329,7 @@ function render(){
     var top=document.createElement('div');top.className='f-top';
     var t=document.createElement('div');t.className='tile';t.style.background=it.tile;t.textContent=it.icon;
     var m=document.createElement('div');m.className='meta';
-    var n=document.createElement('div');n.className='name';n.title=it.path;n.textContent=it.name;
+    var n=document.createElement('div');n.className='name';n.title=it.name;n.textContent=it.name;
     var s=document.createElement('div');s.className='sub';
     s.textContent=it.is_dir?(it.file_count+' files · '+fmt(it.size)):(fmt(it.size)+' · '+it.mtime);
     m.appendChild(n);m.appendChild(s);top.appendChild(t);top.appendChild(m);
