@@ -556,6 +556,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;op
 .f-top .meta{flex:1;min-width:0;overflow:hidden}
 .tile{width:50px;height:50px;border:1.5px solid var(--ink);display:grid;place-items:center;font-size:24px;flex-shrink:0}
 .name{font-weight:700;font-size:14.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.f-ext{font-size:12px;color:var(--muted);max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;vertical-align:bottom}
 .sub{font-size:11px;color:var(--muted);margin-top:3px;font-family:"Courier New",monospace}
 .f-bot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:14px;padding-top:12px;border-top:1.5px dashed var(--rule2)}
 .f-bot form{display:inline-flex}
@@ -751,9 +752,11 @@ function render(){
     s.textContent=it.is_dir?(it.file_count+' files · '+fmt(it.size)):(fmt(it.size)+' · '+it.mtime);
     m.appendChild(n);m.appendChild(s);top.appendChild(t);top.appendChild(m);
     var bot=document.createElement('div');bot.className='f-bot';
-    var lb=document.createElement('span');lb.style.cssText='font-size:12px;color:var(--muted)';
-    var ext=it.name.indexOf('.')>=0?it.name.split('.').pop().toUpperCase():'';
+    var lb=document.createElement('span');lb.className='f-ext';
+    var extRaw=it.name.indexOf('.')>=0?it.name.split('.').pop():'';
+    var ext=extRaw.toUpperCase();
     lb.textContent=it.is_dir?'folder':(ext||'file');
+    lb.title=it.is_dir?'folder':(extRaw||'file');
     bot.appendChild(lb);
     if(it.is_dir){
       var grp=document.createElement('div');grp.style.cssText='display:flex;gap:8px;align-items:center';
@@ -1197,8 +1200,7 @@ function renderBulk(){
   var b4=document.getElementById('btnCancelAll');if(b4)b4.disabled=!canCancel;
   var st=document.getElementById('taskStatus');
   if(st){
-    var active=queue.some(function(t){return t.status==='uploading'||t.status==='waiting';});
-    if(!active){st.style.display='none';st.innerHTML='';}
+    if(!queue.length){st.style.display='none';st.innerHTML='';}
     else{
       st.style.display='flex';st.innerHTML='';
       var done=0,up=0,wait=0,pause=0,fail=0;
@@ -1336,6 +1338,12 @@ function render(){
     s.textContent=it.is_dir?(it.file_count+' files · '+fmt(it.size)):(fmt(it.size)+' · '+it.mtime);
     m.appendChild(n);m.appendChild(s);top.appendChild(t);top.appendChild(m);
     var bot=document.createElement('div');bot.className='f-bot';
+    var lb=document.createElement('span');lb.className='f-ext';
+    var extRaw=it.name.indexOf('.')>=0?it.name.split('.').pop():'';
+    var ext=extRaw.toUpperCase();
+    lb.textContent=it.is_dir?'folder':(ext||'file');
+    lb.title=it.is_dir?'folder':(extRaw||'file');
+    bot.appendChild(lb);
     var grp=document.createElement('div');grp.style.cssText='display:flex;gap:8px;align-items:center';
     var db=document.createElement('button');db.className='btn btn-danger btn-xs';db.textContent='🗑';
     db.onclick=function(e){e.stopPropagation();del(it.path,it.is_dir);};
@@ -1668,7 +1676,7 @@ ADMIN_HTML = """<section class="hero">
 </div>
 <nav class="crumbs" id="crumbs"></nav>
 <div class="search"><span class="m">🔍</span><input id="q" type="text" placeholder="Search current folder…" autocomplete="off"></div>
-<div class="gtool">
+<div class="gtool" style="justify-content:flex-end">
   <button class="btn btn-multi btn-sm" id="btnSel">☑ Multi-select</button>
   <button class="btn btn-add btn-sm" id="btnNewFolder">📁 New folder</button>
 </div>
