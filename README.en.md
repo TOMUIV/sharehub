@@ -25,8 +25,16 @@ No multi-user, no sync clients, no personal storage — just one thing: **the ad
 ### 🎯 Folder-context upload
 Clicking upload inside a folder sends files **only to that folder**. Switching folders mid-upload never redirects queued files — upload continuously while organizing elsewhere, with zero misplacement.
 
+### 🔁 Resumable transfer
+After a drop, tab close, or cancel, re-selecting the same file **re-uploads only the missing chunks**; files ≤64 MB can skip already-uploaded content by content hash.
+
 ### ⚖️ Quota reservation
 Capacity is **reserved at init based on net delta** (overwriting an old file only reserves the difference), instead of failing after uploading. Reservations are reclaimed three ways: **cancel releases immediately, 2-minute idle auto-releases, tab close releases instantly**. Concurrent uploads never overshoot, and available space is always accurate.
+
+### 📤 Upload & share
+Once a file finishes uploading, it automatically appears in the public directory tree — visitors browse, search and download with no account and no extra publishing step.
+
+## Other Features
 
 ### 📂 Folder mechanics
 Drag-and-drop or pick whole folders; files queue in **ascending size order** (small first); duplicate folder names **merge** (same-name files overwrite, new files join).
@@ -34,13 +42,8 @@ Drag-and-drop or pick whole folders; files queue in **ascending size order** (sm
 ### 📊 Real-time visualization
 A four-segment capacity bar (used / reserved / cache / available) that always sums to the total; live per-status counters (total / done / uploading / waiting / paused / failed) during uploads; pagination with page-jumping on both file and task lists.
 
-## Other Features
-
 ### ⚡ Chunked concurrent upload
 Large files split into **5 MB chunks**, uploaded with **3-way concurrency**, each chunk verified with **SHA-256**. Fast, and never blocked by single-request size limits.
-
-### 🔁 Resumable transfer
-After a drop, tab close, or cancel, re-selecting the same file **re-uploads only the missing chunks**; files ≤64 MB can skip already-uploaded content by content hash.
 
 ### 🛡️ Security
 HMAC-signed cookies + sliding renewal + HttpOnly/SameSite; path traversal protection; per-chunk hash verification; all admin endpoints require login.
