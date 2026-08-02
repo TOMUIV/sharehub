@@ -97,7 +97,7 @@ Open:
 
 ### Option 2: Docker
 
-Image: **`tomthu/sharehub:latest`**
+Image: **`tomuiv25/sharehub:latest`**
 
 ```bash
 mkdir sharehub && cd sharehub
@@ -106,7 +106,7 @@ docker run -d --name sharehub \
   -p 18888:18888 \
   -v $(pwd)/config.json:/app/config.json \
   -v $(pwd)/data:/app/files \
-  tomthu/sharehub:latest
+  tomuiv25/sharehub:latest
 ```
 
 Or download the release package (includes `config.json`, `docker-compose.yml`):

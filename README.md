@@ -97,7 +97,7 @@ python3 server.py --host 0.0.0.0 --port 18888 --prefix ""
 
 ### 方式二：Docker
 
-镜像：**`tomthu/sharehub:latest`**
+镜像：**`tomuiv25/sharehub:latest`**
 
 ```bash
 mkdir sharehub && cd sharehub
@@ -106,7 +106,7 @@ docker run -d --name sharehub \
   -p 18888:18888 \
   -v $(pwd)/config.json:/app/config.json \
   -v $(pwd)/data:/app/files \
-  tomthu/sharehub:latest
+  tomuiv25/sharehub:latest
 ```
 
 或下载发布包（含 `config.json`、`docker-compose.yml`）后：

@@ -28,7 +28,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: tomthu/sharehub
+          images: tomuiv25/sharehub
           tags: |
             type=semver,pattern={{version}}
             type=raw,value=latest
