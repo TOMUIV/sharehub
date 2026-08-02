@@ -6,11 +6,22 @@
 
 **Upload, share, done.**
 
-[中文](./README.md) · [Deploy](#quick-start) · [Core Features](#core-features) · [Cache & Reservation](#cache--reservation-mechanism)
+[中文](./README.md)
 
 </div>
 
 ---
+
+## Table of Contents
+
+- [What is this](#what-is-this)
+- [Core Features](#core-features)
+- [Other Features](#other-features)
+- [Cache & Reservation](#cache--reservation-mechanism)
+- [Comparison](#comparison)
+- [Quick Start](#quick-start)
+- [Usage](#usage)
+- [License](#license)
 
 ## What is this
 
