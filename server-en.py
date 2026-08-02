@@ -1090,7 +1090,7 @@ function buildTaskRow(t){
   var r=document.createElement('div');r.className='task';r.setAttribute('data-id',t.id);
   var ic=document.createElement('div');ic.className='tic';ic.textContent='📄';
   var nm=document.createElement('div');nm.className='nm';
-  var pn=document.createElement('div');pn.className='pn';pn.textContent=t.name;pn.title=t.path;
+    var pn=document.createElement('div');pn.className='pn';pn.textContent=t.name;pn.title=t.name;
   var ps=document.createElement('div');ps.className='ps';
   var extra='';
   if(t.status==='uploading'||t.status==='waiting'||t.status==='paused'){
