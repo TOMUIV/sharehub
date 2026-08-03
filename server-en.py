@@ -1436,7 +1436,7 @@ function renameItem(path){
   if(newName===null||!newName.trim())return;
   newName=newName.trim();
   if(newName===oldName)return;
-  if(newName.indexOf('/')>=0||newName.indexOf('\\')>=0){toast(false,'Name cannot contain slashes');return;}
+  if(newName.indexOf('/')>=0||newName.indexOf('\\\\')>=0){toast(false,'Name cannot contain slashes');return;}
   var newPath=parent?(parent+'/'+newName):newName;
   var fd=new FormData();fd.append('old',path);fd.append('new',newPath);
   fetch(P+'/admin/rename',{method:'POST',body:fd}).then(function(r){return r.json();}).then(function(j){
