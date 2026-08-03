@@ -1345,6 +1345,10 @@ function render(){
     lb.title=it.is_dir?'folder':(extRaw||'file');
     bot.appendChild(lb);
     var grp=document.createElement('div');grp.style.cssText='display:flex;gap:8px;align-items:center';
+    var rb=document.createElement('button');rb.className='btn btn-ghost btn-xs';rb.textContent='✏️';
+    rb.title=it.is_dir?'Rename folder':'Rename file';
+    rb.onclick=function(e){e.stopPropagation();renameItem(it.path);};
+    grp.appendChild(rb);
     var db=document.createElement('button');db.className='btn btn-danger btn-xs';db.textContent='🗑';
     db.onclick=function(e){e.stopPropagation();del(it.path,it.is_dir);};
     grp.appendChild(db);
@@ -1424,6 +1428,20 @@ function del(path,isDir){
   fetch(P+'/admin/delete',{method:'POST',body:fd}).then(function(r){return r.json();}).then(function(j){
     if(j.ok){toast(true,'Deleted '+path);refresh();}else{toast(false,j.error||'Delete failed');}
   }).catch(function(){toast(false,'Delete failed');});
+}
+function renameItem(path){
+  var oldName=path.split('/').pop();
+  var parent=path.split('/').slice(0,-1).join('/');
+  var newName=prompt('Rename',oldName);
+  if(newName===null||!newName.trim())return;
+  newName=newName.trim();
+  if(newName===oldName)return;
+  if(newName.indexOf('/')>=0||newName.indexOf('\\')>=0){toast(false,'Name cannot contain slashes');return;}
+  var newPath=parent?(parent+'/'+newName):newName;
+  var fd=new FormData();fd.append('old',path);fd.append('new',newPath);
+  fetch(P+'/admin/rename',{method:'POST',body:fd}).then(function(r){return r.json();}).then(function(j){
+    if(j.ok){toast(true,'Renamed');refresh();}else{toast(false,j.error||'Rename failed');}
+  }).catch(function(){toast(false,'Rename failed');});
 }
 function refresh(){
   snapUp();
@@ -2313,6 +2331,27 @@ class Handler(http.server.BaseHTTPRequestHandler):
                 self._json({"ok": True, "path": rel})
             except OSError:
                 self._json({"error": "Create failed"})
+            return
+
+        if path == "/admin/rename":
+            old = sanitize_rel(fields.get("old", ""))
+            new = sanitize_rel(fields.get("new", ""))
+            t_old = safe_path(old) if old else None
+            t_new = safe_path(new) if new else None
+            if not t_old or not t_new:
+                self._json({"error": "Illegal path"})
+                return
+            if not os.path.exists(t_old):
+                self._json({"error": "Target not found"})
+                return
+            if os.path.exists(t_new):
+                self._json({"error": "A target with the same name exists"})
+                return
+            try:
+                os.rename(t_old, t_new)
+                self._json({"ok": True, "path": new})
+            except OSError:
+                self._json({"error": "Rename failed"})
             return
 
         if path == "/admin/delete":
